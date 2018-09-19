@@ -1,17 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@include file="includes/header.jsp"%>
 
-    <div id="page-wrapper">
+<div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">질문게시판</h1>
@@ -48,14 +40,14 @@
                                 <th>TITLE</th>
                                 <th>WRITER</th>
                                 <th>REG DATE</th>
-                                <th>UPDATE DATE</th>
+                                
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach var="board" items="${list}" >
                             <tr class="odd gradeX">
-                                <td>${Board.bno}</td>
-                                <td><a href="read?bno=${board.bno}&page=${pageMaker.pageDTO.page}">${board.title} <span class="badge">${board.viewcnt}</span></td>
+                                <td>${board.bno}</td>
+                                <td><a href="read?bno=${board.bno}&page=${pageMaker.pageDTO.page}">${board.title} </td>
                                 <td>${board.name}</td>
                                 <td>${board.regdate}</td>
                                 
@@ -95,6 +87,7 @@
     </div>
     <!-- /#page-wrapper -->
 
+
+
 <%@include file="includes/footer.jsp"%>
-</body>
-</html>
+

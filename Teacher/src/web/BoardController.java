@@ -7,17 +7,16 @@ import javax.servlet.http.HttpServletResponse;
 import dao.QBoardDAO;
 import domain.PageDTO;
 import domain.PageMaker;
-import lombok.extern.log4j.Log4j;
+
 import web.util.Converter;
 
-@WebServlet(urlPatterns = "/admin/board/*")
-@Log4j
+@WebServlet(urlPatterns = "/admin/*")
 public class BoardController extends AbstractController {
 
 	private QBoardDAO dao = new QBoardDAO();
 	
-	public String listGET(HttpServletRequest req, HttpServletResponse resp) throws Exception{
-		System.out.println("listGET............");
+	public String boardGET(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		System.out.println("BoardGET............");
 		
 		PageDTO dto = PageDTO.of().setPage(Converter.getInt(req.getParameter("page"),1))
 				.setSize(Converter.getInt(req.getParameter("size"),10));
@@ -28,13 +27,13 @@ public class BoardController extends AbstractController {
 		req.setAttribute("pageMaker", pageMaker);
 		req.setAttribute("list", dao.getList(dto));
 		
-		return "boardlist";
+		return "board";
 	}
 
 	@Override
 	public String getBasic() {
 	
-		return "admin/board/";
+		return "/admin/";
 	}
 
 	

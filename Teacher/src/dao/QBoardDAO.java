@@ -18,6 +18,7 @@ public class QBoardDAO {
 	
 	public List<QBoardVO> getList(PageDTO pageDTO) {
 		
+	
 		log.debug(pageDTO);
 		
 		List<QBoardVO> list = new ArrayList<>();
@@ -27,11 +28,11 @@ public class QBoardDAO {
 		try (SqlSession session = MyBatisLoader.sqlSessionFactory.openSession(true) ) {
 			
 			Map<String, Object> paramMap = new HashMap<>();
-			paramMap.put("page", 1);
-			paramMap.put("size", 10);
+			paramMap.put("page", pageDTO.getPage());
+			paramMap.put("size", pageDTO.getSize());
 		
 			
-			list = session.selectList(prefix + ".list",vo);
+			list = session.selectList(prefix + ".list",paramMap);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
