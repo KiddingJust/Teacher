@@ -18,14 +18,17 @@ insert into tbl_board (bno, title, content, writer)
 values (seq_board.nextval, #{title}, #{content}, #{writer})
 </insert>
 
-	<select id="select10"
-	resultType="BoardVO">
+	<select id="selectList"
+	resultType="QuestionVO">
 	
 <![CDATA[
 select *
-from tbl_board
-where rownum <= 10
-order by bno desc
+from(select
+/*+ INDEX_DESC (tbl_question pk_question) */
+ROWNUM rn, qno, question, regdate, sysdate-(limittime/(24*60))-regdate
+from tbl_question
+where qno > 0 and ROWNUM <= (? * ?))
+where rn > (?-1)*?;
 ]]>
 	</select>
 	

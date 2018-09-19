@@ -20,21 +20,20 @@ public abstract class AbstractController extends HttpServlet {
 
         String path = req.getRequestURI().substring(getBasic().length());
 
-        String way = req.getMethod(); //get인지 post인지 받는 코드
+        String way = req.getMethod(); 
 
-        System.out.println(path + " : " + way); //확인
+        System.out.println(path + " : " + way); //�솗�씤
 
         String methodName = path + way; // writeGET, listGET, writePOST
 
-        Class clz = this.getClass(); // 모든 인스턴스는 자신의 클래스를 알 수 있다.
+        Class clz = this.getClass(); 
 
         try {
-            // 클래스에 선언된 메소드를 찾는다. (메소드 이름, 파라미터1,파라미터2)
             System.out.println("methodName: " + methodName);
             Method method = clz.getDeclaredMethod(methodName,HttpServletRequest.class,HttpServletResponse.class);
             System.out.println("method: " + method);
 
-            Object result = method.invoke(this,req,resp); //메소드를 실행한다. 결과는 object로 나온다.
+            Object result = method.invoke(this,req,resp); 
 
             String returnURL = (String)result;
 

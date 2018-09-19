@@ -13,14 +13,13 @@ import lombok.extern.log4j.Log4j;
 public class BoardDAO {
 
 	  	   
-	private static  final String LIST = "select *\n" +
-            "from (select\n" +
-            "             /*+ INDEX_DESC (tbl_board pk_board) */\n" +
-            "          ROWNUM rn, qno, question, regdate, ? \n" +
-            "      from TBL_QUESTION\n" +
-            "      where qno > 0\n" +
-            "        and ROWNUM <= (? * ?))\n" +
-            "where rn > (?-1) * ?";
+	private static  final String LIST = "select *\n" + 
+			"from(select\n" + 
+			"/*+ INDEX_DESC (tbl_question pk_question) */\n" + 
+			"ROWNUM rn, qno, question, regdate\n" + 
+			"from tbl_question\n" + 
+			"where qno > 0 and ROWNUM <= (? * ?))\n" + 
+			"where rn > (?-1)*?;";
 
 	private static final String QUESTION = "insert into tbl_QUESTION (QNO, QUESTION, REGDATE, WRITER) " +
             "values(seq_board.nextval,?,?,?)";
@@ -56,7 +55,7 @@ public class BoardDAO {
                 	QuestionVO vo = new QuestionVO();
                     int idx = 2;
 
-                    //컬럼명보다 인덱스번호가 빠르다.
+                    //而щ읆紐낅낫�떎 �씤�뜳�뒪踰덊샇媛� 鍮좊Ⅴ�떎.
                     vo.setQno(rs.getInt(idx++));
                     vo.setQuestion(rs.getString(idx++));
                     vo.setRegdate(rs.getDate(idx++));
@@ -118,7 +117,7 @@ public class BoardDAO {
                 	QBoardVO vo = new QBoardVO();
                     int idx = 2;
 
-                    //컬럼명보다 인덱스번호가 빠르다.
+                    //而щ읆紐낅낫�떎 �씤�뜳�뒪踰덊샇媛� 鍮좊Ⅴ�떎.
                     vo.setQno(rs.getInt(idx++));
                     vo.setQuestion(rs.getString(idx++));
                     vo.setRegdate(rs.getDate(idx++));
