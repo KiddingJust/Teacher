@@ -5,15 +5,16 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import domain.PageDTO;
 import domain.QuestionVO;
 import domain.ResponseVO;
 
 public class UnderstandDAO {
 	
-	public List<QuestionVO> getList() {
+	public List<QuestionVO> getList(PageDTO dto) {
 		List<QuestionVO> list = new ArrayList<>();
 	try(SqlSession session = MyBatisLoader.sqlSessionFactory.openSession(true)){	
-		list = session.selectList("mapper.UnderstandMapper.list");
+		list = session.selectList("mapper.UnderstandMapper.list", dto.getPage());
 	}catch(Exception e) {
 		e.printStackTrace();
 	}
