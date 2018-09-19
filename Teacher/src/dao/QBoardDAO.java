@@ -10,6 +10,12 @@ public class QBoardDAO {
 	
 	public void getList(QBoardVO vo) {
 		
+		try (SqlSession session = MyBatisLoader.sqlSession ) {
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
 
