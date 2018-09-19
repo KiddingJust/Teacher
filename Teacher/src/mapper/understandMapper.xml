@@ -7,38 +7,31 @@
  
 <mapper namespace="mapper.UnderstandMapper">
 
-
-<delete id="remove">
-delete from tbl_board where bno=#{bno} 
-</delete>
-
-
-<insert id="create" parameterType="BoardVO">
-insert into tbl_board (bno, title, content, writer)
-values (seq_board.nextval, #{title}, #{content}, #{writer})
-</insert>
-
-	<select id="selectList"
-	resultType="QuestionVO">
-	
+<select id="list" resultType="QuestionVO">
 <![CDATA[
 select *
 from(select
 /*+ INDEX_DESC (tbl_question pk_question) */
 ROWNUM rn, qno, question, regdate, sysdate-(limittime/(24*60))-regdate
 from tbl_question
-where qno > 0 and ROWNUM <= (? * ?))
-where rn > (?-1)*?;
+where qno > 0 and ROWNUM <= ( #{page} * #{size}))
+where rn > ( #{page} - 1 ) * #{size}
 ]]>
+</select>
 
-	</select>
-	
-	<select id="selectPage" resultType="BoardVO">
-	<![CDATA[
-	select rownum bno, title, content, writer, regdate, updatedate, viewcnt
-	from(
-	select rownum rn, bno, title, content, writer, regdate, updatedate, viewcnt from tbl_board where rownum <= ( #{page} * #{size}) order by bno desc)
-	where rn > (#{page}-1)* #{size}
-	]]>
-	</select>
+<insert id="write" parameterType="QuestionVO">
+insert into tbl_question (qno, question, limittime)
+values (seq_board.nextval, #{question}, #{limittime});
+</insert>
+
+<select id="result" resultType="ResponseVO">
+<![CDATA[
+select  * from(
+select mno, reply, replydate, cmt from tbl_response)
+resp, tbl_qmember mem
+where resp.mno = mem.mno
+]]>
+</select>
+
+
 </mapper>
