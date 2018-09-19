@@ -1,6 +1,6 @@
-package dao;
-
-public interface Executor {
-
-    public void doJob() throws Exception;
-}
+//package dao;
+//
+//public interface Executor {
+//
+//    public void doJob() throws Exception;
+//}

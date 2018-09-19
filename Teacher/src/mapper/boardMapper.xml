@@ -3,6 +3,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<<<<<< HEAD
 
 <mapper namespace="mapper.boardMapper">
 
@@ -40,4 +41,40 @@
 		
 	</update>
 
+=======
+ 
+ 
+<mapper namespace="mapper.BoardMapper">
+
+
+<delete id="remove">
+delete from tbl_board where bno=#{bno} 
+</delete>
+
+
+<insert id="create" parameterType="BoardVO">
+insert into tbl_board (bno, title, content, writer)
+values (seq_board.nextval, #{title}, #{content}, #{writer})
+</insert>
+
+	<select id="select10"
+	resultType="BoardVO">
+	
+<![CDATA[
+select *
+from tbl_board
+where rownum <= 10
+order by bno desc
+]]>
+	</select>
+	
+	<select id="selectPage" resultType="BoardVO">
+	<![CDATA[
+	select rownum bno, title, content, writer, regdate, updatedate, viewcnt
+	from(
+	select rownum rn, bno, title, content, writer, regdate, updatedate, viewcnt from tbl_board where rownum <= ( #{page} * #{size}) order by bno desc)
+	where rn > (#{page}-1)* #{size}
+	]]>
+	</select>
+>>>>>>> refs/remotes/origin/master
 </mapper>
