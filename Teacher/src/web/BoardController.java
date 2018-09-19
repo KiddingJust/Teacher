@@ -2,11 +2,11 @@ package web;
 
 import org.apache.log4j.Logger;
 
-import dao.BoardDAO;
+import dao.QBoardDAO;
 
 public class BoardController {
 
-	BoardDAO dao = new BoardDAO();
+	QBoardDAO dao = new QBoardDAO();
 
 	
 }

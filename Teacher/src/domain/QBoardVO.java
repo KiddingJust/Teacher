@@ -8,6 +8,6 @@ import lombok.Data;
 public class QBoardVO {
 
    private Integer mno, bno;
-   private String title, cnt, answer, addfile;
+   private String title, cnt, answer, addfile, name;
    private Date regdate, updatedate; 
 }

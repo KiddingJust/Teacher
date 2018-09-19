@@ -1,1 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.boardMapper">
+
+	<select id="list" resultType="QBoardVO">
+	<![CDATA[
+	select bno, title, cnt, name, updatedate
+	from (
+    	select rownum rn, bno, title, cnt, name, updatedate
+    	from tbl_qboard qb, tbl_qmember qm
+    	where qb.mno = qm.mno and rownum <= ( #{page} * #{size}) order by bno desc )
+		where rn > ( #{page} - 1 ) * #{size}
+		]]>
+
+	</select>
+	
+	<select id="read" resultType="QBoardVO">
+	select * from tbl_qboard where bno = #{bno}
+	</select>
+	
+	<insert id="write" parameterType="QBoardVO">
+	insert into tbl_qboard qb (mno, bno, title, cnt)
+	values (
+		(select mno from tbl_qmember where name=#{name}),seq_qboard.nextval, #{title},#{cnt})
+	</insert>
+	
+	<delete id="remove">
+	delete from tbl_qboard where bno = #{bno}
+	</delete>
+	
+	<update id="modify" parameterType="QBoardVO">
+	
+	update tbl_qboard
+	set title= #{title}, cnt=#{cnt}
+	where bno = #{bno}
+		
+	</update>
+
+</mapper>
