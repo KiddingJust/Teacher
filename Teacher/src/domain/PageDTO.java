@@ -8,7 +8,7 @@ import lombok.ToString;
 public class PageDTO {
 
     private int page = 1;
-    private int size = 5;
+    private int size = 10;
 
     public static PageDTO of(){
         return new PageDTO();
