@@ -7,17 +7,19 @@
  
 <mapper namespace="mapper.UnderstandMapper">
 
-<select id="list" resultType="QuestionVO">
-<![CDATA[
+	<select id="qlist" resultType="QuestionVO">
+<![CDATA[  
 select *
-from(select
+from
+(select
 /*+ INDEX_DESC (tbl_question pk_question) */
-ROWNUM rn, qno, question, regdate, sysdate-(limittime/(24*60))-regdate
-from tbl_question
-where qno > 0 and ROWNUM <= ( #{page} * #{size}))
-where rn > ( #{page} - 1 ) * #{size}
+ROWNUM rn, qno, question, regdate, (regdate + ( 1/ (24 * 60) * limittime))-sysdate time
+from TBL_question
+where qno > 0
+and ROWNUM <= (#{page} * #{size}))
+where rn > (#{page}-1) * #{size}
 ]]>
-</select>
+	</select>
 
 <insert id="write" parameterType="QuestionVO">
 insert into tbl_question (qno, question, limittime)

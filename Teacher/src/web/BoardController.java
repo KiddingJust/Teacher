@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package web;
 
 import javax.servlet.annotation.WebServlet;
@@ -68,3 +69,17 @@ public class BoardController extends AbstractController {
 
 	
 }
+=======
+//package web;
+//
+//import org.apache.log4j.Logger;
+//
+//import dao.QBoardDAO;
+//
+//public class BoardController {
+//
+//	QBoardDAO dao = new QBoardDAO();
+//
+//	
+//}
+>>>>>>> refs/remotes/origin/master

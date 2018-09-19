@@ -22,7 +22,7 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="mapper/boardMapper.xml" />
+		<mapper resource="mapper/understandMapper.xml" />
 	</mappers>
 
 
