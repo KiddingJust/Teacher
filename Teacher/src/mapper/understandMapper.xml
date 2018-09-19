@@ -5,7 +5,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  
-<mapper namespace="mapper.BoardMapper">
+<mapper namespace="mapper.UnderstandMapper">
 
 
 <delete id="remove">
@@ -30,6 +30,7 @@ from tbl_question
 where qno > 0 and ROWNUM <= (? * ?))
 where rn > (?-1)*?;
 ]]>
+
 	</select>
 	
 	<select id="selectPage" resultType="BoardVO">
