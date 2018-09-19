@@ -8,9 +8,9 @@
 
 	<select id="list" resultType="QBoardVO">
 	<![CDATA[
-	select bno, title, cnt, name, updatedate
+	select bno, title, name, updatedate
 	from (
-    	select rownum rn, bno, title, cnt, name, updatedate
+    	select rownum rn, bno, title, name, updatedate
     	from tbl_qboard qb, tbl_qmember qm
     	where qb.mno = qm.mno and rownum <= ( #{page} * #{size}) order by bno desc )
 		where rn > ( #{page} - 1 ) * #{size}
