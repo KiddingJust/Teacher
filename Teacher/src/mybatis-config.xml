@@ -23,6 +23,8 @@
 	</environments>
 	<mappers>
 		<mapper resource="mapper/understandMapper.xml" />
+		<mapper resource="mapper/boardMapper.xml" />
+		
 	</mappers>
 
 

@@ -30,7 +30,23 @@ public class QuestionController extends AbstractController{
 	        return "qlist";
 	    }
 
-	 //read
+	 public String resultGET(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+	        System.out.println("resultGET...........................");
+
+	        String qnoStr = req.getParameter("qno");
+	        System.out.println("==================qnoStr:" + qnoStr);
+	        int qno = Converter.getInt(qnoStr,-1);
+	        System.out.println("==================qno:" + qno);
+
+	        int page = Converter.getInt(req.getParameter("page"),-1);
+	        
+	        req.setAttribute("page", page);
+	        req.setAttribute("board",dao.getResult(qno));
+
+	        return "result";
+	    }
+	 
+	 //result
 	 
 /*	    public String readGET(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 	        String bnoStr = req.getParameter("bno");

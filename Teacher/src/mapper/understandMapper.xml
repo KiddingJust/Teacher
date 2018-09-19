@@ -29,9 +29,9 @@ values (seq_board.nextval, #{question}, #{limittime});
 <select id="result" resultType="ResponseVO">
 <![CDATA[
 select  * from(
-select mno, reply, replydate, cmt from tbl_response)
+select question, qno, mno, reply, replydate, cmt from(select question from tbl_question) ques, tbl_response)
 resp, tbl_qmember mem
-where resp.mno = mem.mno
+where resp.mno = mem.mno and qno=#{qno}
 ]]>
 </select>
 
