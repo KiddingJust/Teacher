@@ -16,7 +16,7 @@ public class QuestionController extends AbstractController{
 
 	//list
 	 public String qlistGET(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-	
+		 	System.out.println("qlistget.....");
 	        PageDTO dto = PageDTO.of()
 	                .setPage(Converter.getInt(req.getParameter("page"), 1))
 	                .setSize(Converter.getInt(req.getParameter("size"), 10));
@@ -46,6 +46,6 @@ public class QuestionController extends AbstractController{
 	    }*/
 
 	    public String getBasic() {
-	        return "/student/user/question/";
+	        return "/admin/question/";
 	    }
 }

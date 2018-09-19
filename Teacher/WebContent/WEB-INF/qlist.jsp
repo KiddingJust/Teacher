@@ -43,22 +43,20 @@
                     <table width="100%" class="table table-striped table-bordered table-hover" >
                         <thead>
                         <tr>
-                            <th>BNO</th>
-                            <th>TITLE</th>
-                            <th>WRITER</th>
-                            <th>REG DATE</th>
-                            <th>UPDATE DATE</th>
+                            <th>QNO</th>
+                            <th>QUESTION</th>
+                            <th>REGDATE</th>
+                            <th>LIMITTIME</th>
 
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="board" items="${list}" >
+                        <c:forEach var="board" items="${qlist}" >
                             <tr class="odd gradeX">
-                                <td>${board.bno}</td>
-                                <td><a href="read?bno=${board.bno}&page=${pageMaker.pageDTO.page}">${board.title}<span class="badge">${board.viewcnt}</span></a></td>
-                                <td>${board.writer}</td>
+                                <td>${board.qno}</td>
+                                <td><a href="read?bno=${board.qno}&page=${pageMaker.pageDTO.page}">${board.question}</a></td>
                                 <td>${board.regdate}</td>
-                                <td>${board.updatedate}</td>
+                                <td>${board.limittime}</td>
 
                             </tr>
                         </c:forEach>

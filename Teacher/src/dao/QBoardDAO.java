@@ -24,7 +24,7 @@ public class QBoardDAO {
 		QBoardVO vo = new QBoardVO();
 		
 		
-		try (SqlSession session = MyBatisLoader.sqlSessionFactory.openSession(true) ) {
+		try (SqlSession session = sqlSessionFactory.openSession(true) ) {
 			
 			Map<String, Object> paramMap = new HashMap<>();
 			paramMap.put("page", 1);
