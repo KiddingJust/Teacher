@@ -40,6 +40,17 @@ public class QBoardDAO {
 
 		return list;	
 	}
+	
+	
+	public void create(QBoardVO vo) {
+		
+		try(SqlSession session = MyBatisLoader.sqlSessionFactory.openSession(true)){
+			
+			session.insert(prefix + ".write",vo);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
 
 	

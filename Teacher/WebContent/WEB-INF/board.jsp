@@ -39,7 +39,7 @@
                                 <th>BNO</th>
                                 <th>TITLE</th>
                                 <th>WRITER</th>
-                                <th>REG DATE</th>
+                                <th>DATE</th>
                                 
                             </tr>
                             </thead>
@@ -49,7 +49,7 @@
                                 <td>${board.bno}</td>
                                 <td><a href="read?bno=${board.bno}&page=${pageMaker.pageDTO.page}">${board.title} </td>
                                 <td>${board.name}</td>
-                                <td>${board.regdate}</td>
+                                <td>${board.updatedate}</td>
                                 
                             </tr>
                             </c:forEach>
@@ -58,7 +58,7 @@
                             </tbody>
                         </table>
                         <p class="text-center">
-                            <a href="/board/write"><button type="button" class="btn btn-primary btn-lg btn-block">글쓰기</button></a></p>
+                            <a href="/admin/bwrite"><button type="button" class="btn btn-primary btn-lg btn-block">글쓰기</button></a></p>
                         <div class="text-center">
                         <!-- /.table-responsive -->
                         <div class="well">

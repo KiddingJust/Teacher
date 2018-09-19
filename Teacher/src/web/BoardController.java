@@ -7,15 +7,16 @@ import javax.servlet.http.HttpServletResponse;
 import dao.QBoardDAO;
 import domain.PageDTO;
 import domain.PageMaker;
-
+import domain.QBoardVO;
 import web.util.Converter;
 
 @WebServlet(urlPatterns = "/admin/*")
 public class BoardController extends AbstractController {
 
 	private QBoardDAO dao = new QBoardDAO();
+	private QBoardVO vo = new QBoardVO();
 	
-	public String boardGET(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+	public String listGET(HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		System.out.println("BoardGET............");
 		
 		PageDTO dto = PageDTO.of().setPage(Converter.getInt(req.getParameter("page"),1))
@@ -30,6 +31,35 @@ public class BoardController extends AbstractController {
 		return "board";
 	}
 
+	 public String bwriteGET(HttpServletRequest req, HttpServletResponse resp)throws Exception{
+	        System.out.println("writeGET..................");
+
+	        return "bwrite";
+
+	    }
+	
+	private String bwritePOST (HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		System.out.println("writePOST..................");
+		
+		req.setCharacterEncoding("UTF-8");
+		
+		String title = req.getParameter("title");
+		String writer = req.getParameter("name");
+		String content = req.getParameter("content");
+		
+		vo.setTitle(title);
+		vo.setName(writer);
+		vo.setCnt(content);
+		
+		dao.create(vo);
+		
+		int page = Converter.getInt(req.getParameter("page"),-1);
+		req.setAttribute("page",page);
+		
+		
+		return "board";
+	}
+	
 	@Override
 	public String getBasic() {
 	
