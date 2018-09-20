@@ -14,7 +14,7 @@
 	<div id="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
-				<h3 class="page-header">${result.get(0).question}</h3>
+				<h3 class="page-header"><h1>응답이 없습니다.</h1> </h3>
 			</div>
 		</div>
 		
@@ -30,16 +30,7 @@
 				<div class="panel-body">
 					<div class="panel panel-default">
 						<div style="height: 1000px; max-width: 1080px; text-align: left">
-							<c:forEach var="response" items="${result}" >
-								<br>${response.mno}
-								<br>${response.seatnum}
-								<br>${response.name}
-								<br>${response.reply}
-								<br>${response.cmt}
-								<br>${response.replydate}
-							</c:forEach>
-								<br><h1>${result.get(0).ratio}</h1>					
-							
+								현재 응답이 없습니다. 조금만 기다려주세요.			
 						</div>
 					</div>
 				</div>
@@ -48,9 +39,6 @@
 		
 	</div>
 </table>
-							<a href="result?page=${page}">
 
-								<button type="button" class="btn btn-outline btn-primary btn-sm">목록보기</button>
-							</a>
 
 <%@ include file="includes/footer.jsp"%>

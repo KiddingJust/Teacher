@@ -18,6 +18,10 @@
 
 	</select>
 	
+	<select id="count" resultType="int">
+	select count(*) from tbl_qboard
+	</select>
+	
 	<select id="read" resultType="QBoardVO">
 	select * from tbl_qboard where bno = #{bno}
 	</select>

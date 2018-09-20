@@ -23,15 +23,19 @@ where rn > (#{page}-1) * #{size}
 
 <insert id="write" parameterType="QuestionVO">
 insert into tbl_question (qno, question, limittime)
-values (seq_board.nextval, #{question}, #{limittime});
+values (seq_question.nextval, #{question}, #{limittime})
 </insert>
 
 <select id="result" resultType="ResponseVO">
 <![CDATA[
-select  * from(
-select question, qno, mno, reply, replydate, cmt from(select question from tbl_question) ques, tbl_response)
-resp, tbl_qmember mem
-where resp.mno = mem.mno and qno=#{qno}
+select a.qno qno,a.question question, a.mno, mem.seatnum, mem.name, a.reply, cmt, a.replydate, a.ratio
+from
+(select res.qno qno,mno, reply,replydate,cmt,que.question question, (sum(reply)over())/(count(*)over())*100 ratio
+from(select question,qno
+from tbl_question
+)que, tbl_response res
+where res.qno=que.qno and res.qno = #{qno}) a, tbl_qmember mem
+where mem.mno=a.mno
 ]]>
 </select>
 

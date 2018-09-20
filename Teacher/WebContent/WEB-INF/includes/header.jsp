@@ -18,7 +18,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>이해했니?</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -289,37 +289,18 @@
                     </li>
                     <!-- 메뉴리스트 1번 start-->
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>How to 가익'있'는 가익?</a>
+                        <a href="/"><i class="fa fa-dashboard fa-fw"></i>Home</a>
                         <!-- 메뉴리스트 1번 end -->
 
                         <!-- 메뉴리스트 2번 start -->
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> 팀원 소개<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#">김가익</a>
-                            </li>
-                            <li>
-                                <a href="#">문지인</a>
-                            </li>
-                            <li>
-                                <a href="#">박가영</a>
-                            </li>
-                            <li>
-                                <a href="#">박고은</a>
-                            </li>
-                            <li>
-                                <a href="#">추연훈</a>
-                            </li>
-                        </ul>
-                    </li>
+          
                     <!-- 메뉴리스트 2번 end-->
                     </li>
                     <li>
-                        <a href="/list"><i class="fa fa-table fa-fw"></i>자유게시판</a>
+                        <a href="qlist?page=1"><i class="fa fa-table fa-fw"></i>이해했니?</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-edit fa-fw"></i>프로젝트</a>
+                        <a href="qna/board?page=1"><i class="fa fa-edit fa-fw"></i>질문게시판</a>
                     </li>
                 </ul>
             </div>

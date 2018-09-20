@@ -1,5 +1,7 @@
 package web;
 
+import java.util.List;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,9 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import dao.UnderstandDAO;
 import domain.PageDTO;
 import domain.PageMaker;
+import domain.QuestionVO;
+import domain.ResponseVO;
 import web.util.Converter;
 
-@WebServlet(urlPatterns = "/admin/question/*")
+@WebServlet(urlPatterns = "/admin/*")
 public class QuestionController extends AbstractController{
 
 	UnderstandDAO dao = new UnderstandDAO();
@@ -34,18 +38,47 @@ public class QuestionController extends AbstractController{
 	        System.out.println("resultGET...........................");
 
 	        String qnoStr = req.getParameter("qno");
-	        System.out.println("==================qnoStr:" + qnoStr);
 	        int qno = Converter.getInt(qnoStr,-1);
-	        System.out.println("==================qno:" + qno);
 
 	        int page = Converter.getInt(req.getParameter("page"),-1);
+
+ 	        if (dao.getResult(qno).isEmpty() ) {
+ 	        	return "wait";
+	        }
+	        
+	        if (qno == -1) {
+	            throw new Exception("invalid data");
+	        }
 	        
 	        req.setAttribute("page", page);
-	        req.setAttribute("board",dao.getResult(qno));
+	        req.setAttribute("result", dao.getResult(qno));
 
 	        return "result";
 	    }
 	 
+	    public String qwriteGET(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+
+	        req.setCharacterEncoding("UTF-8");
+
+	        System.out.println("qwriteGET...........................");
+	        return "qwrite";
+	    }
+	    
+	    public String qwritePOST(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+	        System.out.println("qwritePOST...........................");
+
+	        req.setCharacterEncoding("UTF-8");
+
+	        QuestionVO vo = new QuestionVO();
+	        vo.setQuestion(req.getParameter("question"));
+	        vo.setLimittime(Converter.getInt(req.getParameter("limittime"), 1));
+	        
+	        
+	        dao.write(vo);
+	       
+	        return "redirect/qlist";
+
+	    }
 	 //result
 	 
 /*	    public String readGET(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -62,6 +95,6 @@ public class QuestionController extends AbstractController{
 	    }*/
 
 	    public String getBasic() {
-	        return "/admin/question/";
+	        return "/admin/";
 	    }
 }

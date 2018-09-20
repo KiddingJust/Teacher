@@ -15,7 +15,7 @@
                 //alert("change");
                 var sizeValue = obj.options[obj.selectedIndex].value;
                 console.log(sizeValue);
-                self.location = "list?page=1&size="+sizeValue;
+                self.location = "board?page=1&size="+sizeValue;
             }
         </script>
         <!-- /.row -->
@@ -47,7 +47,7 @@
                             <c:forEach var="board" items="${list}" >
                             <tr class="odd gradeX">
                                 <td>${board.bno}</td>
-                                <td><a href="read?bno=${board.bno}&page=${pageMaker.pageDTO.page}">${board.title} </td>
+                                <td><a href="bread?bno=${board.bno}&page=${pageMaker.pageDTO.page}">${board.title} </td>
                                 <td>${board.name}</td>
                                 <td>${board.updatedate}</td>
                                 
@@ -64,15 +64,15 @@
                         <div class="well">
                             <ul class="pagination">
                                 <c:if test="${pageMaker.prev}">
-                                <li><a href="list?page=${pageMaker.start - 1}&size=${pageMaker.pageDTO.size}">Prev</a></li>
+                                <li><a href="board?page=${pageMaker.start - 1}&size=${pageMaker.pageDTO.size}">Prev</a></li>
                                 </c:if>
 
                                 <c:forEach begin="${pageMaker.start}" end="${pageMaker.end}" var="num">
-                                    <li ${pageMaker.pageDTO.page == num ?"class='active'":""}><a href="list?page=${num}&size=${pageMaker.pageDTO.size}">${num}</a></li>
+                                    <li ${pageMaker.pageDTO.page == num ?"class='active'":""}><a href="board?page=${num}&size=${pageMaker.pageDTO.size}">${num}</a></li>
                                 </c:forEach>
 
                                 <c:if test="${pageMaker.next}">
-                                <li><a href="list?page=${pageMaker.end + 1}&size=${pageMaker.pageDTO.size}">Next</a></li>
+                                <li><a href="board?page=${pageMaker.end + 1}&size=${pageMaker.pageDTO.size}">Next</a></li>
                                 </c:if>
                             </ul>
                         </div>

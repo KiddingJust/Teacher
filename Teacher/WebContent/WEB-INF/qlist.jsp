@@ -64,7 +64,7 @@
                     </table>
 
                     <p class="text-center">
-                    <a action = "write">
+                    <a href = "qwrite">
                             <button type="button" class="btn btn-primary btn-lg btn-block">글쓰기</button>
                         </a></p>
 
